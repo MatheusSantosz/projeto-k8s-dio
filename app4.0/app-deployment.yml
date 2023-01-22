@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-php-deployment
+spec:
+  containers:
+  - name: myapp-php
+    image: matheusbarbosaa/myapp-php:1.1
+    ports:
+    - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-php-service
+spec:
+  type: Nodeport
+  selector:
+    app: myapp-php
+  ports:
+    - port: 80
+      targetPort: 80
+      Nodeport: 30006   
